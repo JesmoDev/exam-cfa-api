@@ -29,6 +29,7 @@ namespace CFA_API
         {
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson();
+            services.AddAutoMapper(typeof(Startup));
 
             string connectionString = Configuration.GetConnectionString("CFADBConnectionString");
             services.AddDbContext<CFAContext>(o => o.UseSqlServer(connectionString));

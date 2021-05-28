@@ -9,8 +9,8 @@ namespace CFA_API.Services
 {
     public interface ICFARepository
     {
-        List<Product> GetAllProducts();
-        Product GetProduct(int id);
+        List<ProductDTO> GetAllProducts();
+        ProductDTO GetProduct(int id);
         void CreateProduct(ProductModel productModel);
 
         //Category CreateCategory();

@@ -15,7 +15,7 @@ namespace CFA_API.Controllers
     public class ProductsController : ControllerBase
     {
 
-        private ICFARepository _cfaRepository;
+        private readonly ICFARepository _cfaRepository;
 
         public ProductsController(ICFARepository cfaRepository)
         {
