@@ -13,9 +13,9 @@ namespace CFA_API.Models
         public string[] Images { get; set; }
 
         public int Category { get; set; }
-        public int ProductType { get; set; }
+        public int Type { get; set; }
         public int Brand { get; set; }
-        public string[] Colors { get; set; }
-        public string[] Sizes { get; set; }
+        public int[] Colors { get; set; }
+        public int[] Sizes { get; set; }
     }
 }

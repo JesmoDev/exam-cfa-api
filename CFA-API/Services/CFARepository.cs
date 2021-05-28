@@ -19,6 +19,9 @@ namespace CFA_API.Services
 
         public void CreateProduct(ProductModel productModel)
         {
+            var colors = _context.Colors.Where(x => productModel.Colors.Contains(x.ID)).ToList();
+            var sizes = _context.Sizes.Where(x => productModel.Sizes.Contains(x.ID)).ToList();
+
             var product = new Product()
             {
                 Name = productModel.Name,
@@ -26,9 +29,12 @@ namespace CFA_API.Services
                 Price = productModel.Price,
                 Images = productModel.Images,
                 CategoryId = productModel.Category,
-                ProductTypeId = productModel.ProductType,
+                ProductTypeId = productModel.Type,
                 BrandId = productModel.Brand,
+                Colors = colors,
+                Sizes = sizes
             };
+
 
             _context.Products.Add(product);
         }
@@ -52,7 +58,7 @@ namespace CFA_API.Services
                 Include(p => p.Brand).
                 Include(p => p.Category).
                 Include(p => p.ProductType).
-                First(x => x.ID == id);
+                FirstOrDefault(x => x.ID == id);
         }
 
         public bool Save()

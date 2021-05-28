@@ -33,6 +33,12 @@ namespace CFA_API.Controllers
         public IActionResult GetProduct(int id)
         {
             var product = _cfaRepository.GetProduct(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
             return Ok(product);
         }
 

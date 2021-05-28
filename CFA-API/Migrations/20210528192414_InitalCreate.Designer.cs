@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CFA_API.Migrations
 {
     [DbContext(typeof(CFAContext))]
-    [Migration("20210528190304_InitalCreate")]
+    [Migration("20210528192414_InitalCreate")]
     partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
