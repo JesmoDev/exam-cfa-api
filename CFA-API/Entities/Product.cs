@@ -13,12 +13,19 @@ namespace CFA_API.Entities
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public string[] Images { get; set; }
         public double Price { get; set; }
+        public string[] Images { get; set; }
 
         public Category Category { get; set; }
+        public int CategoryId { get; set; }
+
         public ProductType ProductType { get; set; }
-        public List<Color> Colors { get; set; }
-        public List<Size> Sizes { get; set; }
+        public int ProductTypeId { get; set; }
+
+        public Brand Brand { get; set; }
+        public int BrandId { get; set; }
+
+        public virtual ICollection<Color> Colors { get; set; }
+        public virtual ICollection<Size> Sizes { get; set; }
     }
 }

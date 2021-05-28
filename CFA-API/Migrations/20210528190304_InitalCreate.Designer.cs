@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CFA_API.Migrations
 {
     [DbContext(typeof(CFAContext))]
-    [Migration("20210528164335_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210528190304_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,7 +84,10 @@ namespace CFA_API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -99,14 +102,16 @@ namespace CFA_API.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ProductTypeID")
+                    b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("BrandId");
 
-                    b.HasIndex("ProductTypeID");
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
                 });
@@ -158,13 +163,25 @@ namespace CFA_API.Migrations
 
             modelBuilder.Entity("CFA_API.Entities.Product", b =>
                 {
+                    b.HasOne("CFA_API.Entities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CFA_API.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CFA_API.Entities.ProductType", "ProductType")
                         .WithMany()
-                        .HasForeignKey("ProductTypeID");
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
 
                     b.Navigation("Category");
 

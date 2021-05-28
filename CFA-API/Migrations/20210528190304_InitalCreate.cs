@@ -2,7 +2,7 @@
 
 namespace CFA_API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,26 +56,33 @@ namespace CFA_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: true),
-                    ProductTypeID = table.Column<int>(type: "int", nullable: true)
+                    Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ProductTypeId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryID",
-                        column: x => x.CategoryID,
+                        name: "FK_Products_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_ProductTypes_ProductTypeID",
-                        column: x => x.ProductTypeID,
+                        name: "FK_Products_ProductTypes_ProductTypeId",
+                        column: x => x.ProductTypeId,
                         principalTable: "ProductTypes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,14 +131,19 @@ namespace CFA_API.Migrations
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryID",
+                name: "IX_Products_BrandId",
                 table: "Products",
-                column: "CategoryID");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductTypeID",
+                name: "IX_Products_CategoryId",
                 table: "Products",
-                column: "ProductTypeID");
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductTypeId",
+                table: "Products",
+                column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sizes_ProductID",
@@ -142,9 +154,6 @@ namespace CFA_API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Brands");
-
-            migrationBuilder.DropTable(
                 name: "Colors");
 
             migrationBuilder.DropTable(
@@ -152,6 +161,9 @@ namespace CFA_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Categories");

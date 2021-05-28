@@ -1,0 +1,52 @@
+﻿using CFA_API.Entities;
+using CFA_API.Models;
+using CFA_API.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CFA_API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
+    {
+
+        private ICFARepository _cfaRepository;
+
+        public ProductsController(ICFARepository cfaRepository)
+        {
+            _cfaRepository = cfaRepository;
+        }
+
+        [HttpGet]
+        public IActionResult GetAllProducts()
+        {
+            var products = _cfaRepository.GetAllProducts();
+            return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var product = _cfaRepository.GetProduct(id);
+            return Ok(product);
+        }
+
+        [HttpPost]
+        public IActionResult CreateProduct([FromBody] ProductModel productModel)
+        {
+            _cfaRepository.CreateProduct(productModel);
+
+            if (!_cfaRepository.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request");
+            }
+
+            return NoContent();
+        }
+    }
+}

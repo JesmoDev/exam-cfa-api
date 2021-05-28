@@ -49,7 +49,6 @@ namespace CFA_API.Services
                 new ProductType { Name = "Shorts", Description = "Beskrivelse af shorts" },
                 new ProductType { Name = "Strik", Description = "Beskrivelse af strik" },
                 new ProductType { Name = "Bukser", Description = "Beskrivelse af bukser" },
-                new ProductType { Name = "Sko", Description = "Beskrivelse af sko" },
                 new ProductType { Name = "Jakker", Description = "Beskrivelse af jakker" },
             };
 
@@ -63,6 +62,14 @@ namespace CFA_API.Services
                 new Brand { Name = "Versace", Description = "Beskrivelse af Versace" },
             };
 
+            if (!contex.Sizes.Any()) { contex.AddRange(sizes); }
+            if (!contex.Colors.Any()) { contex.AddRange(colors); }
+            if (!contex.Categories.Any()) { contex.AddRange(categories); }
+            if (!contex.ProductTypes.Any()) { contex.AddRange(productTypes); }
+            if (!contex.Brands.Any()) { contex.AddRange(brands); }
+
+            contex.SaveChanges();
+
             var products = new List<Product>
             {
                 new Product
@@ -71,30 +78,39 @@ namespace CFA_API.Services
                     Description = "Beskrivelse af Maxikjole i poplin",
                     Images = new string[] { "/kjole-1-1", "/kjole-1-2" },
                     Price = 199,
-                    Category = categories[1],
-                    ProductType = productTypes[0],
-                    Colors = colors.Take(3).ToList(),
-                    Sizes = sizes.Take(5).ToList()
+                    Brand = contex.Brands.FirstOrDefault(),
+                    Category = contex.Categories.FirstOrDefault(),
+                    ProductType = contex.ProductTypes.FirstOrDefault(),
+                    Colors = contex.Colors.Take(3).ToList(),
+                    Sizes = contex.Sizes.Take(2).ToList()
                 },
                 new Product
                 {
-                    Name = "Maxikjole i poplin 2",
-                    Description = "Beskrivelse af Maxikjole i poplin 2",
-                    Images = new string[] { "/kjole-1-1" },
-                    Price = 199,
-                    Category = categories[1],
-                    ProductType = productTypes[0],
-                    Colors = colors.Take(3).ToList(),
-                    Sizes = sizes.Take(5).ToList()
+                    Name = "ORIGINAL TEE REGULAR FIT - T-shirts basic",
+                    Description = "Beskrivelse af ORIGINAL TEE REGULAR FIT - T-shirts basic",
+                    Images = new string[] { "/t-shirt-1-1", "/tshirt-1-2", "/tshirt-1-3" },
+                    Price = 189,
+                    Brand = contex.Brands.FirstOrDefault(),
+                    Category = contex.Categories.FirstOrDefault(),
+                    ProductType = contex.ProductTypes.FirstOrDefault(),
+                    Colors = contex.Colors.ToList(),
+                    Sizes = contex.Sizes.ToList()
                 },
+                new Product
+                {
+                    Name = "JJIGORDON JJSHARK - Træningsbukser",
+                    Description = "Beskrivelse af JJIGORDON JJSHARK - Træningsbukser",
+                    Images = new string[] { "/bukser-1-1" },
+                    Price = 249,
+                    Brand = contex.Brands.FirstOrDefault(),
+                    Category = contex.Categories.FirstOrDefault(),
+                    ProductType = contex.ProductTypes.FirstOrDefault(),
+                    Colors = contex.Colors.Take(2).ToList(),
+                    Sizes = contex.Sizes.Take(4).ToList()
+                }
             };
 
-            contex.AddRange(sizes);
-            contex.AddRange(colors);
-            contex.AddRange(categories);
-            contex.AddRange(productTypes);
-            contex.AddRange(brands);
-            contex.AddRange(products);
+            if (!contex.Products.Any()) { contex.AddRange(products); }
 
             contex.SaveChanges();
         }
