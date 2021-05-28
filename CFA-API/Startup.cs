@@ -29,7 +29,7 @@ namespace CFA_API
         {
             services.AddControllers();
 
-            string connectionString = Configuration["connectionStrings:CFADBConnectionString"];
+            string connectionString = Configuration.GetConnectionString("CFADBConnectionString");
             services.AddDbContext<CFAContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<ICFARepository, CFARepository>();

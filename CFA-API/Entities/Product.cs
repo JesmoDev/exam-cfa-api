@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -13,10 +14,11 @@ namespace CFA_API.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string[] Images { get; set; }
+        public double Price { get; set; }
 
         public Category Category { get; set; }
         public ProductType ProductType { get; set; }
-        public Color Colors { get; set; }
-        public Size Sizes { get; set; }
+        public List<Color> Colors { get; set; }
+        public List<Size> Sizes { get; set; }
     }
 }
