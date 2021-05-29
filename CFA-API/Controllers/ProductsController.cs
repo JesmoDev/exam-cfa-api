@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace CFA_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {

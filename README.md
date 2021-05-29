@@ -1,20 +1,19 @@
 # exam-cfa-api
 An Api using ASP .NET Core and Entity Framework
 
-# API-Endpoints
-endpoint: `api/`
+# API-Endpoints 
 
-## Products
-endpoint: `api/products`
+# Products
+endpoint: `/products`
 
 ### Get All Products
-endpoint: GET `api/products`
+endpoint: GET `/products`
 
 ### Get Product
-endpoint: GET `api/products/:id`
+endpoint: GET `/products/:id`
 
 ### Create Product
-endpoint: POST `api/products`
+endpoint: POST `/products`
 
 ```cs
 {
@@ -29,9 +28,11 @@ endpoint: POST `api/products`
   "sizes": int[]
 }
 ```
+Category, type and brand are id references  
+Colors and sizes are arrays of id references
 
 ### Update Product
-endpoint: PUT `api/products/:id`
+endpoint: PUT `/products/:id`
 
 ```cs
 {
@@ -60,5 +61,4 @@ You only need to provide the fields that you want to update. Example:
 }
 ```
 ### DELETE Product
-endpoint: DELETE `api/products/:id`
-
+endpoint: DELETE `/products/:id`
