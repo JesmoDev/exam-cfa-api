@@ -16,7 +16,7 @@ endpoint: GET `api/products/:id`
 ### Create Product
 endpoint: POST `api/products`
 
-```json
+```cs
 {
   "name": string,
   "description": string,
@@ -33,7 +33,7 @@ endpoint: POST `api/products`
 ### Update Product
 endpoint: PUT `api/products/:id`
 
-```json
+```cs
 {
   "name": string,
   "description": string,
