@@ -12,7 +12,6 @@ namespace CFA_API.Mapping
     {
         public ProductMappings()
         {
-                //.ForMember(dest => dest.CategoryId, opt => opt.MapFrom(scr => scr.Category))
             CreateMap<ProductModel, Product>()
                 .ForMember(dest => dest.CategoryId, opt => { 
                     opt.PreCondition(scr => scr.Category != null);

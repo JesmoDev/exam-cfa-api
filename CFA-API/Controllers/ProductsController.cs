@@ -56,26 +56,6 @@ namespace CFA_API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult DeleteProduct(int id)
-        {
-            var product = _cfaRepository.GetProduct(id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            _cfaRepository.DeleteProduct(id);
-
-            if (!_cfaRepository.Save())
-            {
-                return StatusCode(500, "A problem happened while handling your request");
-            }
-
-            return NoContent();
-        }
-
         [HttpPut("{id:int}")]
         public IActionResult UpdateProduct(int id, [FromBody] ProductModel ProductModel)
         {
@@ -87,6 +67,26 @@ namespace CFA_API.Controllers
             }
 
             _cfaRepository.UpdateProduct(id, ProductModel);
+
+            if (!_cfaRepository.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request");
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var product = _cfaRepository.GetProduct(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _cfaRepository.DeleteProduct(id);
 
             if (!_cfaRepository.Save())
             {
