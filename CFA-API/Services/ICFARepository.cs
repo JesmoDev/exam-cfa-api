@@ -12,6 +12,7 @@ namespace CFA_API.Services
         List<ProductDTO> GetAllProducts();
         ProductDTO GetProduct(int id);
         void CreateProduct(ProductModel productModel);
+        void DeleteProduct(int id);
 
         //Category CreateCategory();
         //List<Category> GetAllCategories();

@@ -32,6 +32,12 @@ namespace CFA_API.Services
             _context.Products.Add(product);
         }
 
+        public void DeleteProduct(int id)
+        {
+            var product = _context.Products.Find(id);
+            _context.Products.Remove(product);
+        }
+
         public List<ProductDTO> GetAllProducts()
         {
             var products = _context.Products.

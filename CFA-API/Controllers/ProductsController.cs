@@ -29,7 +29,7 @@ namespace CFA_API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetProduct(int id)
         {
             var product = _cfaRepository.GetProduct(id);
@@ -46,6 +46,46 @@ namespace CFA_API.Controllers
         public IActionResult CreateProduct([FromBody] ProductModel productModel)
         {
             _cfaRepository.CreateProduct(productModel);
+
+            if (!_cfaRepository.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request");
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var product = _cfaRepository.GetProduct(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _cfaRepository.DeleteProduct(id);
+
+            if (!_cfaRepository.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request");
+            }
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult PatchProduct(int id)
+        {
+            var product = _cfaRepository.GetProduct(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _cfaRepository.DeleteProduct(id);
 
             if (!_cfaRepository.Save())
             {
