@@ -19,17 +19,17 @@ namespace CFA_API.Services
                 new Size { Name = "XXL" },
             };
 
-            var colors = new List<Color>
+            var colors = new List<ProductColor>
             {
-                new Color { Name = "Hvid" },
-                new Color { Name = "Sort" },
-                new Color { Name = "Blå" },
-                new Color { Name = "Lilla" },
-                new Color { Name = "Gul" },
-                new Color { Name = "Grøn" },
-                new Color { Name = "Orange" },
-                new Color { Name = "Cyan" },
-                new Color { Name = "Pink" },
+                new ProductColor { Name = "Hvid" },
+                new ProductColor { Name = "Sort" },
+                new ProductColor { Name = "Blå" },
+                new ProductColor { Name = "Lilla" },
+                new ProductColor { Name = "Gul" },
+                new ProductColor { Name = "Grøn" },
+                new ProductColor { Name = "Orange" },
+                new ProductColor { Name = "Cyan" },
+                new ProductColor { Name = "Pink" },
             };
 
             var categories = new List<Category>

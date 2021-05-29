@@ -25,7 +25,7 @@ namespace CFA_API.Entities
         public Brand Brand { get; set; }
         public int BrandId { get; set; }
 
-        public virtual ICollection<Color> Colors { get; set; }
+        public virtual ICollection<ProductColor> Colors { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }
     }
 }

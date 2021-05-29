@@ -21,24 +21,7 @@ namespace CFA_API.Services
             _mapper = mapper;
         }
 
-        public void CreateProduct(ProductModel productModel)
-        {
-            var colors = _context.Colors.Where(x => productModel.Colors.Contains(x.ID)).ToList();
-            var sizes = _context.Sizes.Where(x => productModel.Sizes.Contains(x.ID)).ToList();
-
-            var product = _mapper.Map<Product>(productModel);
-            product.Colors = colors;
-            product.Sizes = sizes;
-
-            _context.Products.Add(product);
-        }
-
-        public void DeleteProduct(int id)
-        {
-            var product = _context.Products.Find(id);
-            _context.Products.Remove(product);
-        }
-
+        #region Product
         public List<ProductDTO> GetAllProducts()
         {
             var products = _context.Products.
@@ -65,15 +48,59 @@ namespace CFA_API.Services
             return _mapper.Map<ProductDTO>(product);
         }
 
+        public int CreateProduct(ProductModel productModel)
+        {
+            var colors = _context.Colors.Where(x => productModel.Colors.Contains(x.ID)).ToList();
+            var sizes = _context.Sizes.Where(x => productModel.Sizes.Contains(x.ID)).ToList();
+
+            var product = _mapper.Map<Product>(productModel);
+            product.Colors = colors;
+            product.Sizes = sizes;
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return product.ID;
+        }
+
         public void UpdateProduct(int id, ProductModel productModel)
         {
             var product = _context.Products.Find(id);
             _mapper.Map(productModel, product);
+
+            _context.SaveChanges();
         }
 
-        public bool Save()
+        public void DeleteProduct(int id)
         {
-            return _context.SaveChanges() >= 0;
+            var product = _context.Products.Find(id);
+            _context.Products.Remove(product);
+
+            _context.SaveChanges();
         }
+        #endregion Product
+
+        #region Color
+        public List<ProductColor> GetAllColors() => _context.Colors.ToList();
+        public ProductColor GetColor(int id) => _context.Colors.Find(id);
+        public int CreateColor(ProductColor color)
+        {
+            _context.Colors.Add(color);
+            _context.SaveChanges();
+            return color.ID;
+        }
+
+        public void UpdateColor(int id, ProductColor color)
+        {
+            _context.Colors.Find(id).Name = color.Name;
+            _context.SaveChanges();
+        }
+
+        public void DeleteColor(int id)
+        {
+            var color = _context.Colors.Find(id);
+            _context.Colors.Remove(color);
+            _context.SaveChanges();
+        }
+        #endregion Color
     }
 }

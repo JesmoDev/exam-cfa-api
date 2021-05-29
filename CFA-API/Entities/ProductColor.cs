@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFA_API.Entities
 {
-    public class Color
+    public class ProductColor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

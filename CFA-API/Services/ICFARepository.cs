@@ -10,19 +10,24 @@ namespace CFA_API.Services
 {
     public interface ICFARepository
     {
+        // Product
         List<ProductDTO> GetAllProducts();
         ProductDTO GetProduct(int id);
-        void CreateProduct(ProductModel productModel);
-        void DeleteProduct(int id);
+        int CreateProduct(ProductModel productModel);
         void UpdateProduct(int id, ProductModel productModel);
+        void DeleteProduct(int id);
+
+        // Color
+        List<ProductColor> GetAllColors();
+        ProductColor GetColor(int id);
+        int CreateColor(ProductColor color);
+        void UpdateColor(int id, ProductColor color);
+        void DeleteColor(int id);
 
         //Category CreateCategory();
         //List<Category> GetAllCategories();
         //Category GetCategory(int ID);
         //void UpdateCategory(int ID, Category category);
         //void DeleteCategory(int ID);
-
-
-        bool Save();
     }
 }

@@ -46,18 +46,12 @@ namespace CFA_API.Controllers
         [HttpPost]
         public IActionResult CreateProduct([FromBody] ProductModel productModel)
         {
-            _cfaRepository.CreateProduct(productModel);
-
-            if (!_cfaRepository.Save())
-            {
-                return StatusCode(500, "A problem happened while handling your request");
-            }
-
-            return NoContent();
+            int id = _cfaRepository.CreateProduct(productModel);
+            return Ok(id);
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateProduct(int id, [FromBody] ProductModel ProductModel)
+        public IActionResult UpdateProduct(int id, [FromBody] ProductModel productModel)
         {
             var product = _cfaRepository.GetProduct(id);
 
@@ -66,13 +60,7 @@ namespace CFA_API.Controllers
                 return NotFound();
             }
 
-            _cfaRepository.UpdateProduct(id, ProductModel);
-
-            if (!_cfaRepository.Save())
-            {
-                return StatusCode(500, "A problem happened while handling your request");
-            }
-
+            _cfaRepository.UpdateProduct(id, productModel);
             return NoContent();
         }
 
@@ -87,13 +75,8 @@ namespace CFA_API.Controllers
             }
 
             _cfaRepository.DeleteProduct(id);
-
-            if (!_cfaRepository.Save())
-            {
-                return StatusCode(500, "A problem happened while handling your request");
-            }
-
             return NoContent();
         }
     }
+#pragma endregion Products
 }
