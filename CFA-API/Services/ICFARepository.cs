@@ -24,10 +24,11 @@ namespace CFA_API.Services
         void UpdateColor(int id, ProductColor color);
         void DeleteColor(int id);
 
-        //Category CreateCategory();
-        //List<Category> GetAllCategories();
-        //Category GetCategory(int ID);
-        //void UpdateCategory(int ID, Category category);
-        //void DeleteCategory(int ID);
+        // Size
+        List<ProductSize> GetAllSizes();
+        ProductSize GetSize(int id);
+        int CreateSize(ProductSize color);
+        void UpdateSize(int id, ProductSize color);
+        void DeleteSize(int id);
     }
 }

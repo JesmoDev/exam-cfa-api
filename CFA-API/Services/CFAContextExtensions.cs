@@ -9,14 +9,14 @@ namespace CFA_API.Services
         public static void EnsureSeedDataForContext(this CFAContext contex)
         {
 
-            var sizes = new List<Size>
+            var sizes = new List<ProductSize>
             {
-                new Size { Name = "XS" },
-                new Size { Name = "S" },
-                new Size { Name = "M" },
-                new Size { Name = "L" },
-                new Size { Name = "XL" },
-                new Size { Name = "XXL" },
+                new ProductSize { Name = "XS" },
+                new ProductSize { Name = "S" },
+                new ProductSize { Name = "M" },
+                new ProductSize { Name = "L" },
+                new ProductSize { Name = "XL" },
+                new ProductSize { Name = "XXL" },
             };
 
             var colors = new List<ProductColor>

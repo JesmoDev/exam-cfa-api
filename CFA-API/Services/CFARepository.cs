@@ -102,5 +102,29 @@ namespace CFA_API.Services
             _context.SaveChanges();
         }
         #endregion Color
+
+        #region Size
+        public List<ProductSize> GetAllSizes() => _context.Sizes.ToList();
+        public ProductSize GetSize(int id) => _context.Sizes.Find(id);
+        public int CreateSize(ProductSize size)
+        {
+            _context.Sizes.Add(size);
+            _context.SaveChanges();
+            return size.ID;
+        }
+
+        public void UpdateSize(int id, ProductSize size)
+        {
+            _context.Sizes.Find(id).Name = size.Name;
+            _context.SaveChanges();
+        }
+
+        public void DeleteSize(int id)
+        {
+            var size = _context.Sizes.Find(id);
+            _context.Sizes.Remove(size);
+            _context.SaveChanges();
+        }
+        #endregion Size
     }
 }

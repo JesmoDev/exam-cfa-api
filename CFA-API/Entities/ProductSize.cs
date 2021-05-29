@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFA_API.Entities
 {
-    public class Size
+    public class ProductSize
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

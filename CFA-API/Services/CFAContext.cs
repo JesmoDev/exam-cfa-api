@@ -9,7 +9,7 @@ namespace CFA_API.Services
 {
     public class CFAContext : DbContext
     {
-        public DbSet<Size> Sizes { get; set; }
+        public DbSet<ProductSize> Sizes { get; set; }
         public DbSet<ProductColor> Colors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }

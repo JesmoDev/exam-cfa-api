@@ -15,7 +15,6 @@ namespace CFA_API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-
         private readonly ICFARepository _cfaRepository;
 
         public ProductsController(ICFARepository cfaRepository)
@@ -78,5 +77,4 @@ namespace CFA_API.Controllers
             return NoContent();
         }
     }
-#pragma endregion Products
 }
