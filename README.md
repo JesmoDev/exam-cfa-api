@@ -62,3 +62,43 @@ You only need to provide the fields that you want to update. Example:
 ```
 ### DELETE Product
 endpoint: DELETE `/products/:id`
+
+<br/>
+
+# Colors & Sizes
+endpoint Colors: `/colors`  
+endpoint Sizes: `/sizes`
+
+Everything here is the same for both, except the endpoints. In the examples we will use: `enpoint`.
+
+### Get All
+endpoint: GET `/endpoint`
+
+### Get
+endpoint: GET `/endpoint/:id`
+
+### Create
+endpoint: GET `/endpoint`
+```cs
+{
+  "name": string
+}
+```
+### Update
+endpoint: GET `/endpoint`
+```cs
+{
+  "name": string
+}
+```
+### Delete
+endpoint: GET `/endpoint/:id`
+
+</br>
+
+# Categories, ProductTypes & Brands
+endpoint Colors: `/Categories`  
+endpoint Sizes: `/sizes`
+endpoint Sizes: `/sizes`
+
+Everything here is the same for all, except the endpoints. In the examples we will use: `enpoint`.
