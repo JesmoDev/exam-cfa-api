@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CFA_API.Entities;
 using CFA_API.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,12 @@ namespace CFA_API.Services
                 FirstOrDefault(x => x.ID == id);
 
             return _mapper.Map<ProductDTO>(product);
+        }
+
+        public void UpdateProduct(int id, ProductModel productModel)
+        {
+            var product = _context.Products.Find(id);
+            _mapper.Map(productModel, product);
         }
 
         public bool Save()

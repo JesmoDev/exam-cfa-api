@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CFA_API.Entities;
 using CFA_API.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CFA_API.Services
 {
@@ -13,6 +14,7 @@ namespace CFA_API.Services
         ProductDTO GetProduct(int id);
         void CreateProduct(ProductModel productModel);
         void DeleteProduct(int id);
+        void UpdateProduct(int id, ProductModel productModel);
 
         //Category CreateCategory();
         //List<Category> GetAllCategories();

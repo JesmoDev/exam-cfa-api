@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CFA_API.Controllers
 {
@@ -75,8 +76,8 @@ namespace CFA_API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id:int}")]
-        public IActionResult PatchProduct(int id)
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateProduct(int id, [FromBody] ProductModel ProductModel)
         {
             var product = _cfaRepository.GetProduct(id);
 
@@ -85,7 +86,7 @@ namespace CFA_API.Controllers
                 return NotFound();
             }
 
-            _cfaRepository.DeleteProduct(id);
+            _cfaRepository.UpdateProduct(id, ProductModel);
 
             if (!_cfaRepository.Save())
             {
