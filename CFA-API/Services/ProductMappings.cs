@@ -42,6 +42,10 @@ namespace CFA_API.Mapping
                 .ForMember(dest => dest.Brand, opt => opt.MapFrom(scr => scr.Brand.Name))
                 .ForMember(dest => dest.Colors, opt => opt.MapFrom(scr => scr.Colors.Select(x => x.Name)))
                 .ForMember(dest => dest.Sizes, opt => opt.MapFrom(scr => scr.Sizes.Select(x => x.Name)));
+
+            CreateMap<CategoryModel, Category>()
+                .ForMember(dest => dest.Name, opt => opt.Condition(scr => scr.Name != null))
+                .ForMember(dest => dest.Description, opt => opt.Condition(scr => scr.Description != null));
         }
     }
 }

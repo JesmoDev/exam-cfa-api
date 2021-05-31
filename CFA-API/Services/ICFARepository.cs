@@ -17,6 +17,13 @@ namespace CFA_API.Services
         void UpdateProduct(int id, ProductModel productModel);
         void DeleteProduct(int id);
 
+        // Category
+        List<Category> GetAllCategories();
+        Category GetCategory(int id);
+        int CreateCategory(CategoryModel category);
+        void UpdateCategory(int id, CategoryModel category);
+        void DeleteCategory(int id);
+
         // Color
         List<ProductColor> GetAllColors();
         ProductColor GetColor(int id);

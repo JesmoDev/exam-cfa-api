@@ -126,5 +126,37 @@ namespace CFA_API.Services
             _context.SaveChanges();
         }
         #endregion Size
+
+        #region Category
+        public List<Category> GetAllCategories() => _context.Categories.ToList();
+
+        public Category GetCategory(int id) => _context.Categories.Find(id);
+
+        public int CreateCategory(CategoryModel categoryModel)
+        {
+            var category = _mapper.Map<Category>(categoryModel);
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+            return category.ID;
+        }
+
+        public void UpdateCategory(int id, CategoryModel categoryModel)
+        {
+            var category = _context.Categories.Find(id);
+            _mapper.Map(categoryModel, category);
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteCategory(int id)
+        {
+            var category = _context.Categories.Find(id);
+            _context.Categories.Remove(category);
+
+            _context.SaveChanges();
+        }
+        #endregion Category
+
+
     }
 }

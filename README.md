@@ -85,7 +85,7 @@ endpoint: GET `/endpoint`
 }
 ```
 ### Update
-endpoint: GET `/endpoint`
+endpoint: GET `/endpoint/:id`
 ```cs
 {
   "name": string
@@ -96,9 +96,9 @@ endpoint: GET `/endpoint/:id`
 
 </br>
 
-# Categories, ProductTypes & Brands
-endpoint Colors: `/Categories`  
-endpoint Sizes: `/sizes`
-endpoint Sizes: `/sizes`
+# Categories, Types & Brands
+endpoint Colors: `/categories`  
+endpoint Sizes: `/types`
+endpoint Sizes: `/brands`
 
 Everything here is the same for all, except the endpoints. In the examples we will use: `enpoint`.

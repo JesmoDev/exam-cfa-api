@@ -45,34 +45,16 @@ namespace CFA_API.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("CFA_API.Entities.Color", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProductID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductID");
-
-                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("CFA_API.Entities.Product", b =>
@@ -114,25 +96,27 @@ namespace CFA_API.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CFA_API.Entities.ProductType", b =>
+            modelBuilder.Entity("CFA_API.Entities.ProductColor", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
-                    b.ToTable("ProductTypes");
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("Colors");
                 });
 
-            modelBuilder.Entity("CFA_API.Entities.Size", b =>
+            modelBuilder.Entity("CFA_API.Entities.ProductSize", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -152,11 +136,22 @@ namespace CFA_API.Migrations
                     b.ToTable("Sizes");
                 });
 
-            modelBuilder.Entity("CFA_API.Entities.Color", b =>
+            modelBuilder.Entity("CFA_API.Entities.ProductType", b =>
                 {
-                    b.HasOne("CFA_API.Entities.Product", null)
-                        .WithMany("Colors")
-                        .HasForeignKey("ProductID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("CFA_API.Entities.Product", b =>
@@ -186,7 +181,14 @@ namespace CFA_API.Migrations
                     b.Navigation("ProductType");
                 });
 
-            modelBuilder.Entity("CFA_API.Entities.Size", b =>
+            modelBuilder.Entity("CFA_API.Entities.ProductColor", b =>
+                {
+                    b.HasOne("CFA_API.Entities.Product", null)
+                        .WithMany("Colors")
+                        .HasForeignKey("ProductID");
+                });
+
+            modelBuilder.Entity("CFA_API.Entities.ProductSize", b =>
                 {
                     b.HasOne("CFA_API.Entities.Product", null)
                         .WithMany("Sizes")
