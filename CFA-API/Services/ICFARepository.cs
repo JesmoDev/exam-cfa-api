@@ -31,6 +31,13 @@ namespace CFA_API.Services
         void UpdateProductType(int id, ProductTypeModel productTypeModel);
         void DeleteProductType(int id);
 
+        // Brand
+        List<Brand> GetAllBrands();
+        Brand GetBrand(int id);
+        int CreateBrand(BrandModel brandModel);
+        void UpdateBrand(int id, BrandModel brandModel);
+        void DeleteBrand(int id);
+
         // Color
         List<ProductColor> GetAllColors();
         ProductColor GetColor(int id);

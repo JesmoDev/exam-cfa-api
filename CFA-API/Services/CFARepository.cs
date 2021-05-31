@@ -79,54 +79,6 @@ namespace CFA_API.Services
         }
         #endregion Product
 
-        #region Color
-        public List<ProductColor> GetAllColors() => _context.Colors.ToList();
-        public ProductColor GetColor(int id) => _context.Colors.Find(id);
-        public int CreateColor(ProductColor color)
-        {
-            _context.Colors.Add(color);
-            _context.SaveChanges();
-            return color.ID;
-        }
-
-        public void UpdateColor(int id, ProductColor color)
-        {
-            _context.Colors.Find(id).Name = color.Name;
-            _context.SaveChanges();
-        }
-
-        public void DeleteColor(int id)
-        {
-            var color = _context.Colors.Find(id);
-            _context.Colors.Remove(color);
-            _context.SaveChanges();
-        }
-        #endregion Color
-
-        #region Size
-        public List<ProductSize> GetAllSizes() => _context.Sizes.ToList();
-        public ProductSize GetSize(int id) => _context.Sizes.Find(id);
-        public int CreateSize(ProductSize size)
-        {
-            _context.Sizes.Add(size);
-            _context.SaveChanges();
-            return size.ID;
-        }
-
-        public void UpdateSize(int id, ProductSize size)
-        {
-            _context.Sizes.Find(id).Name = size.Name;
-            _context.SaveChanges();
-        }
-
-        public void DeleteSize(int id)
-        {
-            var size = _context.Sizes.Find(id);
-            _context.Sizes.Remove(size);
-            _context.SaveChanges();
-        }
-        #endregion Size
-
         #region Category
         public List<Category> GetAllCategories() => _context.Categories.ToList();
 
@@ -186,5 +138,83 @@ namespace CFA_API.Services
             _context.SaveChanges();
         }
         #endregion ProductType
+
+        #region Brand
+        public List<Brand> GetAllBrands() => _context.Brands.ToList();
+
+        public Brand GetBrand(int id) => _context.Brands.Find(id);
+
+        public int CreateBrand(BrandModel brandModel)
+        {
+            var brand = _mapper.Map<Brand>(brandModel);
+            _context.Brands.Add(brand);
+            _context.SaveChanges();
+            return brand.ID;
+        }
+
+        public void UpdateBrand(int id, BrandModel brandModel)
+        {
+            var brand = _context.Brands.Find(id);
+            _mapper.Map(brandModel, brand);
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteBrand(int id)
+        {
+            var brand = _context.Brands.Find(id);
+            _context.Brands.Remove(brand);
+
+            _context.SaveChanges();
+        }
+        #endregion Brand
+
+        #region Color
+        public List<ProductColor> GetAllColors() => _context.Colors.ToList();
+        public ProductColor GetColor(int id) => _context.Colors.Find(id);
+        public int CreateColor(ProductColor color)
+        {
+            _context.Colors.Add(color);
+            _context.SaveChanges();
+            return color.ID;
+        }
+
+        public void UpdateColor(int id, ProductColor color)
+        {
+            _context.Colors.Find(id).Name = color.Name;
+            _context.SaveChanges();
+        }
+
+        public void DeleteColor(int id)
+        {
+            var color = _context.Colors.Find(id);
+            _context.Colors.Remove(color);
+            _context.SaveChanges();
+        }
+        #endregion Color
+
+        #region Size
+        public List<ProductSize> GetAllSizes() => _context.Sizes.ToList();
+        public ProductSize GetSize(int id) => _context.Sizes.Find(id);
+        public int CreateSize(ProductSize size)
+        {
+            _context.Sizes.Add(size);
+            _context.SaveChanges();
+            return size.ID;
+        }
+
+        public void UpdateSize(int id, ProductSize size)
+        {
+            _context.Sizes.Find(id).Name = size.Name;
+            _context.SaveChanges();
+        }
+
+        public void DeleteSize(int id)
+        {
+            var size = _context.Sizes.Find(id);
+            _context.Sizes.Remove(size);
+            _context.SaveChanges();
+        }
+        #endregion Size
     }
 }
