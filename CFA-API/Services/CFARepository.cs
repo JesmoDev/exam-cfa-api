@@ -157,6 +157,34 @@ namespace CFA_API.Services
         }
         #endregion Category
 
+        #region ProductType
+        public List<ProductType> GetAllProductTypes() => _context.ProductTypes.ToList();
 
+        public ProductType GetProductType(int id) => _context.ProductTypes.Find(id);
+
+        public int CreateProductType(ProductTypeModel productTypeModel)
+        {
+            var productType = _mapper.Map<ProductType>(productTypeModel);
+            _context.ProductTypes.Add(productType);
+            _context.SaveChanges();
+            return productType.ID;
+        }
+
+        public void UpdateProductType(int id, ProductTypeModel productTypeModel)
+        {
+            var productType = _context.ProductTypes.Find(id);
+            _mapper.Map(productTypeModel, productType);
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteProductType(int id)
+        {
+            var productType = _context.ProductTypes.Find(id);
+            _context.ProductTypes.Remove(productType);
+
+            _context.SaveChanges();
+        }
+        #endregion ProductType
     }
 }

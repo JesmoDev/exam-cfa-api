@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CFA_API.Mapping
 {
-    public class ProductMappings : Profile
+    public class AutoMapperMappings : Profile
     {
-        public ProductMappings()
+        public AutoMapperMappings()
         {
             CreateMap<ProductModel, Product>()
                 .ForMember(dest => dest.CategoryId, opt => { 
@@ -44,8 +44,13 @@ namespace CFA_API.Mapping
                 .ForMember(dest => dest.Sizes, opt => opt.MapFrom(scr => scr.Sizes.Select(x => x.Name)));
 
             CreateMap<CategoryModel, Category>()
-                .ForMember(dest => dest.Name, opt => opt.Condition(scr => scr.Name != null))
-                .ForMember(dest => dest.Description, opt => opt.Condition(scr => scr.Description != null));
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<ProductTypeModel, ProductType>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<BrandModel, Brand>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
