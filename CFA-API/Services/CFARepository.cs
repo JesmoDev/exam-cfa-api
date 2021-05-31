@@ -22,7 +22,7 @@ namespace CFA_API.Services
         }
 
         #region Product
-        public List<ProductDTO> GetAllProducts()
+        public List<ProductResponse> GetAllProducts()
         {
             var products = _context.Products.
                 Include(x => x.Colors).
@@ -32,10 +32,10 @@ namespace CFA_API.Services
                 Include(x => x.ProductType).
                 ToList();
 
-            return _mapper.Map<List<Product>, List<ProductDTO>>(products);
+            return _mapper.Map<List<Product>, List<ProductResponse>>(products);
         }
 
-        public ProductDTO GetProduct(int id)
+        public ProductResponse GetProduct(int id)
         {
             var product = _context.Products.
                 Include(p => p.Colors).
@@ -45,15 +45,15 @@ namespace CFA_API.Services
                 Include(p => p.ProductType).
                 FirstOrDefault(x => x.ID == id);
 
-            return _mapper.Map<ProductDTO>(product);
+            return _mapper.Map<ProductResponse>(product);
         }
 
-        public int CreateProduct(ProductModel productModel)
+        public int CreateProduct(ProductCreateDTO productDTO)
         {
-            var colors = _context.Colors.Where(x => productModel.Colors.Contains(x.ID)).ToList();
-            var sizes = _context.Sizes.Where(x => productModel.Sizes.Contains(x.ID)).ToList();
+            var colors = _context.Colors.Where(x => productDTO.Colors.Contains(x.ID)).ToList();
+            var sizes = _context.Sizes.Where(x => productDTO.Sizes.Contains(x.ID)).ToList();
 
-            var product = _mapper.Map<Product>(productModel);
+            var product = _mapper.Map<Product>(productDTO);
             product.Colors = colors;
             product.Sizes = sizes;
 
@@ -62,10 +62,10 @@ namespace CFA_API.Services
             return product.ID;
         }
 
-        public void UpdateProduct(int id, ProductModel productModel)
+        public void UpdateProduct(int id, ProductUpdateDTO productDTO)
         {
             var product = _context.Products.Find(id);
-            _mapper.Map(productModel, product);
+            _mapper.Map(productDTO, product);
 
             _context.SaveChanges();
         }
@@ -84,18 +84,18 @@ namespace CFA_API.Services
 
         public Category GetCategory(int id) => _context.Categories.Find(id);
 
-        public int CreateCategory(CategoryModel categoryModel)
+        public int CreateCategory(CategoryCreateDTO categoryDTO)
         {
-            var category = _mapper.Map<Category>(categoryModel);
+            var category = _mapper.Map<Category>(categoryDTO);
             _context.Categories.Add(category);
             _context.SaveChanges();
             return category.ID;
         }
 
-        public void UpdateCategory(int id, CategoryModel categoryModel)
+        public void UpdateCategory(int id, CategoryUpdateDTO categoryDTO)
         {
             var category = _context.Categories.Find(id);
-            _mapper.Map(categoryModel, category);
+            _mapper.Map(categoryDTO, category);
 
             _context.SaveChanges();
         }
@@ -114,18 +114,18 @@ namespace CFA_API.Services
 
         public ProductType GetProductType(int id) => _context.ProductTypes.Find(id);
 
-        public int CreateProductType(ProductTypeModel productTypeModel)
+        public int CreateProductType(ProductTypeCreateDTO productTypeDTO)
         {
-            var productType = _mapper.Map<ProductType>(productTypeModel);
+            var productType = _mapper.Map<ProductType>(productTypeDTO);
             _context.ProductTypes.Add(productType);
             _context.SaveChanges();
             return productType.ID;
         }
 
-        public void UpdateProductType(int id, ProductTypeModel productTypeModel)
+        public void UpdateProductType(int id, ProductTypeUpdateDTO productTypeDTO)
         {
             var productType = _context.ProductTypes.Find(id);
-            _mapper.Map(productTypeModel, productType);
+            _mapper.Map(productTypeDTO, productType);
 
             _context.SaveChanges();
         }
@@ -144,18 +144,18 @@ namespace CFA_API.Services
 
         public Brand GetBrand(int id) => _context.Brands.Find(id);
 
-        public int CreateBrand(BrandModel brandModel)
+        public int CreateBrand(BrandCreateDTO brandDTO)
         {
-            var brand = _mapper.Map<Brand>(brandModel);
+            var brand = _mapper.Map<Brand>(brandDTO);
             _context.Brands.Add(brand);
             _context.SaveChanges();
             return brand.ID;
         }
 
-        public void UpdateBrand(int id, BrandModel brandModel)
+        public void UpdateBrand(int id, BrandUpdateDTO brandDTO)
         {
             var brand = _context.Brands.Find(id);
-            _mapper.Map(brandModel, brand);
+            _mapper.Map(brandDTO, brand);
 
             _context.SaveChanges();
         }

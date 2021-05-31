@@ -11,31 +11,31 @@ namespace CFA_API.Services
     public interface ICFARepository
     {
         // Product
-        List<ProductDTO> GetAllProducts();
-        ProductDTO GetProduct(int id);
-        int CreateProduct(ProductModel productModel);
-        void UpdateProduct(int id, ProductModel productModel);
+        List<ProductResponse> GetAllProducts();
+        ProductResponse GetProduct(int id);
+        int CreateProduct(ProductCreateDTO productDTO);
+        void UpdateProduct(int id, ProductUpdateDTO productDTO);
         void DeleteProduct(int id);
 
         // Category
         List<Category> GetAllCategories();
         Category GetCategory(int id);
-        int CreateCategory(CategoryModel categoryModel);
-        void UpdateCategory(int id, CategoryModel categoryModel);
+        int CreateCategory(CategoryCreateDTO categoryModel);
+        void UpdateCategory(int id, CategoryUpdateDTO categoryModel);
         void DeleteCategory(int id);
 
         // ProductType
         List<ProductType> GetAllProductTypes();
         ProductType GetProductType(int id);
-        int CreateProductType(ProductTypeModel productTypeModel);
-        void UpdateProductType(int id, ProductTypeModel productTypeModel);
+        int CreateProductType(ProductTypeCreateDTO productTypeModel);
+        void UpdateProductType(int id, ProductTypeUpdateDTO productTypeModel);
         void DeleteProductType(int id);
 
         // Brand
         List<Brand> GetAllBrands();
         Brand GetBrand(int id);
-        int CreateBrand(BrandModel brandModel);
-        void UpdateBrand(int id, BrandModel brandModel);
+        int CreateBrand(BrandCreateDTO brandModel);
+        void UpdateBrand(int id, BrandUpdateDTO brandModel);
         void DeleteBrand(int id);
 
         // Color

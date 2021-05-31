@@ -41,14 +41,14 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBrand([FromBody] BrandModel brandModel)
+        public IActionResult CreateBrand([FromBody] BrandCreateDTO brandDTO)
         {
-            int id = _cfaRepository.CreateBrand(brandModel);
+            int id = _cfaRepository.CreateBrand(brandDTO);
             return Ok(id);
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateBrand(int id, [FromBody] BrandModel brandModel)
+        public IActionResult UpdateBrand(int id, [FromBody] BrandUpdateDTO brandDTO)
         {
             var brand = _cfaRepository.GetBrand(id);
 
@@ -57,7 +57,7 @@ namespace CFA_API.Controllers
                 return NotFound();
             }
 
-            _cfaRepository.UpdateBrand(id, brandModel);
+            _cfaRepository.UpdateBrand(id, brandDTO);
             return NoContent();
         }
 

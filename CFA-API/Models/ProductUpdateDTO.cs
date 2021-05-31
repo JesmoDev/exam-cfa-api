@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CFA_API.Models
 {
-    public class ProductModel
+    public class ProductUpdateDTO
     {
         public string Name { get; set; }
         public string Description { get; set; }

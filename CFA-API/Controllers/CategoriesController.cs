@@ -41,14 +41,14 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCategory([FromBody] CategoryModel categoryModel)
+        public IActionResult CreateCategory([FromBody] CategoryCreateDTO categoryDTO)
         {
-            int id = _cfaRepository.CreateCategory(categoryModel);
+            int id = _cfaRepository.CreateCategory(categoryDTO);
             return Ok(id);
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateCategory(int id, [FromBody] CategoryModel categoryModel)
+        public IActionResult UpdateCategory(int id, [FromBody] CategoryUpdateDTO categoryDTO)
         {
             var category = _cfaRepository.GetCategory(id);
 
@@ -57,7 +57,7 @@ namespace CFA_API.Controllers
                 return NotFound();
             }
 
-            _cfaRepository.UpdateCategory(id, categoryModel);
+            _cfaRepository.UpdateCategory(id, categoryDTO);
             return NoContent();
         }
 

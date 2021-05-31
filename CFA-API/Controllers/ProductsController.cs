@@ -43,14 +43,14 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProduct([FromBody] ProductModel productModel)
+        public IActionResult CreateProduct([FromBody] ProductCreateDTO productDTO)
         {
-            int id = _cfaRepository.CreateProduct(productModel);
+            int id = _cfaRepository.CreateProduct(productDTO);
             return Ok(id);
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateProduct(int id, [FromBody] ProductModel productModel)
+        public IActionResult UpdateProduct(int id, [FromBody] ProductUpdateDTO productDTO)
         {
             var product = _cfaRepository.GetProduct(id);
 
@@ -59,7 +59,7 @@ namespace CFA_API.Controllers
                 return NotFound();
             }
 
-            _cfaRepository.UpdateProduct(id, productModel);
+            _cfaRepository.UpdateProduct(id, productDTO);
             return NoContent();
         }
 
