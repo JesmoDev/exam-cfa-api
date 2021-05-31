@@ -65,6 +65,47 @@ endpoint: DELETE `/products/:id`
 
 <br/>
 
+# Categories, Types & Brands
+endpoint Categories: `/categories`  
+endpoint Types: `/types`   
+endpoint Brands: `/brands`
+
+Everything here is the same for all, except the endpoints. In the examples we will use: `enpoint`.
+
+### Get All
+endpoint: GET `/endpoint`
+
+### Get
+endpoint: GET `/endpoint/:id`
+
+### Create
+endpoint: GET `/endpoint`
+```cs
+{
+  "name": string
+  "description": string
+}
+```
+### Update
+endpoint: GET `/endpoint/:id`
+```cs
+{
+  "name": string
+  "description": string
+}
+```
+You only need to provide the fields that you want to update. Example:
+
+```json
+{
+  "name": "Updated Name",
+}
+```
+### Delete
+endpoint: GET `/endpoint/:id`
+
+</br>
+
 # Colors & Sizes
 endpoint Colors: `/colors`  
 endpoint Sizes: `/sizes`
@@ -93,12 +134,3 @@ endpoint: GET `/endpoint/:id`
 ```
 ### Delete
 endpoint: GET `/endpoint/:id`
-
-</br>
-
-# Categories, Types & Brands
-endpoint Colors: `/categories`  
-endpoint Sizes: `/types`
-endpoint Sizes: `/brands`
-
-Everything here is the same for all, except the endpoints. In the examples we will use: `enpoint`.
