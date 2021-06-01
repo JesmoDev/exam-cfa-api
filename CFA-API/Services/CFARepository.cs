@@ -22,7 +22,7 @@ namespace CFA_API.Services
         }
 
         #region Product
-        public List<ProductResponse> GetAllProducts()
+        public List<ProductResponse> GetAllProducts(int? category, int? type, int? brand, int[] sizes, int[] colors)
         {
             var products = _context.Products.
                 Include(x => x.Colors).
@@ -31,6 +31,12 @@ namespace CFA_API.Services
                 Include(x => x.Category).
                 Include(x => x.ProductType).
                 Include(x => x.Supplier).
+                Where(x => 
+                    (category == null || x.Category.ID == category) && 
+                    (brand == null || x.Brand.ID == brand) &&
+                    (type == null || x.ProductType.ID == type) &&
+                    (colors.Length == 0 || x.Colors.Select(c => c.ID).Any(z => colors.Contains(z))) &&
+                    (sizes.Length == 0 || x.Sizes.Select(c => c.ID).Any(z => sizes.Contains(z)))).
                 ToList();
 
             return _mapper.Map<List<Product>, List<ProductResponse>>(products);

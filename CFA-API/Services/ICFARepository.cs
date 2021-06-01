@@ -11,7 +11,7 @@ namespace CFA_API.Services
     public interface ICFARepository
     {
         // Product
-        List<ProductResponse> GetAllProducts();
+        List<ProductResponse> GetAllProducts(int? category, int? type, int? brand, int[] sizes, int[] colors);
         ProductResponse GetProduct(int id);
         int CreateProduct(ProductCreateDTO productDTO);
         void UpdateProduct(int id, ProductUpdateDTO productDTO);

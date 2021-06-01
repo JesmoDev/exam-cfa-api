@@ -23,9 +23,9 @@ namespace CFA_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllProducts(int? category, int? type, int? brand, [FromQuery] int[] sizes, [FromQuery] int[] colors)
         {
-            var products = _cfaRepository.GetAllProducts();
+            var products = _cfaRepository.GetAllProducts(category, type, brand, sizes, colors);
             return Ok(products);
         }
 
