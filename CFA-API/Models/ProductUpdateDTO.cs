@@ -10,6 +10,7 @@ namespace CFA_API.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public double? Price { get; set; }
+        public int? Stock { get; set; }
         public string[] Images { get; set; }
 
         public int? Category { get; set; }

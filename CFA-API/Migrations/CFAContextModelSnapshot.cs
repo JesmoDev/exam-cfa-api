@@ -85,6 +85,12 @@ namespace CFA_API.Migrations
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("BrandId");
@@ -92,6 +98,8 @@ namespace CFA_API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
                 });
@@ -154,6 +162,30 @@ namespace CFA_API.Migrations
                     b.ToTable("ProductTypes");
                 });
 
+            modelBuilder.Entity("CFA_API.Entities.Supplier", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("CFA_API.Entities.Product", b =>
                 {
                     b.HasOne("CFA_API.Entities.Brand", "Brand")
@@ -174,11 +206,19 @@ namespace CFA_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CFA_API.Entities.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
 
                     b.Navigation("ProductType");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("CFA_API.Entities.ProductColor", b =>

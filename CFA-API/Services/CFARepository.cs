@@ -30,6 +30,7 @@ namespace CFA_API.Services
                 Include(x => x.Brand).
                 Include(x => x.Category).
                 Include(x => x.ProductType).
+                Include(x => x.Supplier).
                 ToList();
 
             return _mapper.Map<List<Product>, List<ProductResponse>>(products);
@@ -43,6 +44,7 @@ namespace CFA_API.Services
                 Include(p => p.Brand).
                 Include(p => p.Category).
                 Include(p => p.ProductType).
+                Include(x => x.Supplier).
                 FirstOrDefault(x => x.ID == id);
 
             return _mapper.Map<ProductResponse>(product);
@@ -216,5 +218,35 @@ namespace CFA_API.Services
             _context.SaveChanges();
         }
         #endregion Size
+
+        #region Supplier
+        public List<Supplier> GetAllSuppliers() => _context.Suppliers.ToList();
+
+        public Supplier GetSupplier(int id) => _context.Suppliers.Find(id);
+
+        public int CreateSupplier(Supplier supplierDTO)
+        {
+            var supplier = _mapper.Map<Supplier>(supplierDTO);
+            _context.Suppliers.Add(supplier);
+            _context.SaveChanges();
+            return supplier.ID;
+        }
+
+        public void UpdateSupplier(int id, SupplierUpdateDTO supplierDTO)
+        {
+            var supplier = _context.Suppliers.Find(id);
+            _mapper.Map(supplierDTO, supplier);
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteSupplier(int id)
+        {
+            var supplier = _context.Suppliers.Find(id);
+            _context.Suppliers.Remove(supplier);
+
+            _context.SaveChanges();
+        }
+        #endregion Supplier
     }
 }

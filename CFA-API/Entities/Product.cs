@@ -14,6 +14,7 @@ namespace CFA_API.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public int Stock { get; set; }
         public string[] Images { get; set; }
 
         public Category Category { get; set; }
@@ -24,6 +25,9 @@ namespace CFA_API.Entities
 
         public Brand Brand { get; set; }
         public int BrandId { get; set; }
+
+        public Supplier Supplier { get; set; }
+        public int SupplierId { get; set; }
 
         public virtual ICollection<ProductColor> Colors { get; set; }
         public virtual ICollection<ProductSize> Sizes { get; set; }

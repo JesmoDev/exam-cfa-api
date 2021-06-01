@@ -15,6 +15,8 @@ namespace CFA_API.Models
         [Required]
         public double Price { get; set; }
         [Required]
+        public int Stock { get; set; }
+        [Required]
         public string[] Images { get; set; }
 
         [Required]

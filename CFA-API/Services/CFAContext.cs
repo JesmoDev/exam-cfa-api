@@ -14,6 +14,7 @@ namespace CFA_API.Services
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
 
         public CFAContext(DbContextOptions<CFAContext> options) : base(options)

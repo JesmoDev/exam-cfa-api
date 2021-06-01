@@ -48,8 +48,15 @@ namespace CFA_API.Services
         // Size
         List<ProductSize> GetAllSizes();
         ProductSize GetSize(int id);
-        int CreateSize(ProductSize color);
-        void UpdateSize(int id, ProductSize color);
+        int CreateSize(ProductSize productSize);
+        void UpdateSize(int id, ProductSize productSize);
         void DeleteSize(int id);
+
+        // Size
+        List<Supplier> GetAllSuppliers();
+        Supplier GetSupplier(int id);
+        int CreateSupplier(Supplier supplier);
+        void UpdateSupplier(int id, SupplierUpdateDTO supplierDTO);
+        void DeleteSupplier(int id);
     }
 }
