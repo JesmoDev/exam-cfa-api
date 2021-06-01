@@ -19,5 +19,7 @@ namespace CFA_API.Entities
         public string Address { get; set; }
         [Required]
         public string Email { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 }

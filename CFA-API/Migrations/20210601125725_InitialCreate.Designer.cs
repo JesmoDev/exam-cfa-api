@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CFA_API.Migrations
 {
     [DbContext(typeof(CFAContext))]
-    [Migration("20210601111913_InitialCreate")]
+    [Migration("20210601125725_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,7 +209,7 @@ namespace CFA_API.Migrations
                         .IsRequired();
 
                     b.HasOne("CFA_API.Entities.Supplier", "Supplier")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -242,6 +242,11 @@ namespace CFA_API.Migrations
                     b.Navigation("Colors");
 
                     b.Navigation("Sizes");
+                });
+
+            modelBuilder.Entity("CFA_API.Entities.Supplier", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

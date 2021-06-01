@@ -3,11 +3,16 @@ An Api using ASP .NET Core and Entity Framework
 
 # API-Endpoints 
 
-# Products
-endpoint: `/products`
+# Products `/products`
 
 ### Get All Products
-endpoint: GET `/products`
+endpoint: GET `/products`  
+This enpoint includes optional filter queries:  
+category, type, brand, colors, sizes.  
+Example: `/products?category=1&type=1&brand=1&color=1&size=1`  
+Colors and sizes are arrays and can therefor be used multiple times in the query to filter for multiple colors or sizes:  
+Example: `/products?colors=1&colors=2&sizes=1&sizes=2&sizes=3`  
+This will return all products that contains at least one of the colors and one of the sizes in the query.
 
 ### Get Product
 endpoint: GET `/products/:id`
@@ -62,6 +67,46 @@ You only need to provide the fields that you want to update. Example:
 ```
 ### DELETE Product
 endpoint: DELETE `/products/:id`
+
+<br/>
+
+# Suppliers `/suppliers`
+
+### Get All
+endpoint: GET `/suppliers`
+
+### Get
+endpoint: GET `/suppliers/:id`  
+This endpoint has an optional parameter to include products in the response: `includeProducts`  
+example: 
+`/suppliers/1?includeProducts=true`
+
+### Create
+endpoint: GET `/suppliers`
+```cs
+{
+  "name": string
+  "address": string
+  "email": string
+}
+```
+### Update
+endpoint: GET `/suppliers/:id`
+```cs
+{
+  "name": string
+  "address": string
+  "email": string
+}
+```
+You only need to provide the fields that you want to update. Example:
+```cs
+{
+  "name": "name updated"
+}
+```
+### Delete
+endpoint: GET `/suppliers/:id`
 
 <br/>
 

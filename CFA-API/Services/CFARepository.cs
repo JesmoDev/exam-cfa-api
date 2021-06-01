@@ -30,9 +30,8 @@ namespace CFA_API.Services
                 Include(x => x.Brand).
                 Include(x => x.Category).
                 Include(x => x.ProductType).
-                Include(x => x.Supplier).
-                Where(x => 
-                    (category == null || x.Category.ID == category) && 
+                Where(x =>
+                    (category == null || x.Category.ID == category) &&
                     (brand == null || x.Brand.ID == brand) &&
                     (type == null || x.ProductType.ID == type) &&
                     (colors.Length == 0 || x.Colors.Select(c => c.ID).Any(z => colors.Contains(z))) &&
@@ -50,12 +49,24 @@ namespace CFA_API.Services
                 Include(p => p.Brand).
                 Include(p => p.Category).
                 Include(p => p.ProductType).
-                Include(x => x.Supplier).
                 FirstOrDefault(x => x.ID == id);
 
             return _mapper.Map<ProductResponse>(product);
         }
 
+        public Product GetProductDetails(int id)
+        {
+            var product = _context.Products.
+                Include(p => p.Colors).
+                Include(p => p.Sizes).
+                Include(p => p.Brand).
+                Include(p => p.Category).
+                Include(p => p.ProductType).
+                Include(p => p.Supplier).
+                FirstOrDefault(x => x.ID == id);
+
+            return product;
+        }
         public int CreateProduct(ProductCreateDTO productDTO)
         {
             var colors = _context.Colors.Where(x => productDTO.Colors.Contains(x.ID)).ToList();
@@ -228,7 +239,19 @@ namespace CFA_API.Services
         #region Supplier
         public List<Supplier> GetAllSuppliers() => _context.Suppliers.ToList();
 
-        public Supplier GetSupplier(int id) => _context.Suppliers.Find(id);
+        public Supplier GetSupplier(int id, bool includeProducts = false)
+        {
+            if (includeProducts)
+            {
+                var supplier = _context.Suppliers.Include(x => x.Products).SingleOrDefault(x => x.ID == id);
+                return supplier;
+            }
+            else
+            {
+                var supplier = _context.Suppliers.Find(id);
+                return supplier;
+            }
+        }
 
         public int CreateSupplier(Supplier supplierDTO)
         {

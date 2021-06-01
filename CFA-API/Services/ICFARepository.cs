@@ -13,6 +13,7 @@ namespace CFA_API.Services
         // Product
         List<ProductResponse> GetAllProducts(int? category, int? type, int? brand, int[] sizes, int[] colors);
         ProductResponse GetProduct(int id);
+        Product GetProductDetails(int id);
         int CreateProduct(ProductCreateDTO productDTO);
         void UpdateProduct(int id, ProductUpdateDTO productDTO);
         void DeleteProduct(int id);
@@ -54,7 +55,7 @@ namespace CFA_API.Services
 
         // Size
         List<Supplier> GetAllSuppliers();
-        Supplier GetSupplier(int id);
+        Supplier GetSupplier(int id, bool includeProducts = false);
         int CreateSupplier(Supplier supplier);
         void UpdateSupplier(int id, SupplierUpdateDTO supplierDTO);
         void DeleteSupplier(int id);

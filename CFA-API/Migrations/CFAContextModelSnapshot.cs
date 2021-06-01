@@ -207,7 +207,7 @@ namespace CFA_API.Migrations
                         .IsRequired();
 
                     b.HasOne("CFA_API.Entities.Supplier", "Supplier")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,6 +240,11 @@ namespace CFA_API.Migrations
                     b.Navigation("Colors");
 
                     b.Navigation("Sizes");
+                });
+
+            modelBuilder.Entity("CFA_API.Entities.Supplier", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

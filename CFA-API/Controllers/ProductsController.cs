@@ -42,6 +42,19 @@ namespace CFA_API.Controllers
             return Ok(product);
         }
 
+        [HttpGet("{id:int}/details")]
+        public IActionResult GetProductDetails(int id)
+        {
+            var product = _cfaRepository.GetProductDetails(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+
         [HttpPost]
         public IActionResult CreateProduct([FromBody] ProductCreateDTO productDTO)
         {

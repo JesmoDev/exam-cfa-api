@@ -29,9 +29,9 @@ namespace CFA_API.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetSupplier(int id)
+        public IActionResult GetSupplier(int id, [FromQuery] bool includeProducts = false)
         {
-            var supplier = _cfaRepository.GetSupplier(id);
+            var supplier = _cfaRepository.GetSupplier(id, includeProducts);
 
             if (supplier == null)
             {
