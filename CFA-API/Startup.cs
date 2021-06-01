@@ -33,7 +33,7 @@ namespace CFA_API
             services.AddAutoMapper(typeof(Startup));
 
             string connectionString = Configuration.GetConnectionString("CFADBConnectionString");
-            services.AddDbContext<CFAContext>(o => o.UseSqlServer(connectionString));
+            services.AddDbContext<CFAContext>(o => o.UseSqlite(connectionString));
 
             services.AddScoped<ICFARepository, CFARepository>();
         }
