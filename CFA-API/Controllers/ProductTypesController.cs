@@ -1,4 +1,5 @@
-﻿using CFA_API.Models;
+﻿using CFA_API.Entities;
+using CFA_API.Models;
 using CFA_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProductType([FromBody] ProductTypeCreateDTO productTypeDTO)
+        public IActionResult CreateProductType([FromBody] ProductType productTypeDTO)
         {
             int id = _cfaRepository.CreateProductType(productTypeDTO);
             return Ok(id);

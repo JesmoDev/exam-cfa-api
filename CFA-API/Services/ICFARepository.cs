@@ -21,22 +21,22 @@ namespace CFA_API.Services
         // Category
         List<Category> GetAllCategories();
         Category GetCategory(int id);
-        int CreateCategory(CategoryCreateDTO categoryModel);
+        int CreateCategory(Category categoryDTO);
         void UpdateCategory(int id, CategoryUpdateDTO categoryModel);
         void DeleteCategory(int id);
 
         // ProductType
         List<ProductType> GetAllProductTypes();
         ProductType GetProductType(int id);
-        int CreateProductType(ProductTypeCreateDTO productTypeModel);
+        int CreateProductType(ProductType productTypeDTO);
         void UpdateProductType(int id, ProductTypeUpdateDTO productTypeModel);
         void DeleteProductType(int id);
 
         // Brand
         List<Brand> GetAllBrands();
         Brand GetBrand(int id);
-        int CreateBrand(BrandCreateDTO brandModel);
-        void UpdateBrand(int id, BrandUpdateDTO brandModel);
+        int CreateBrand(Brand brandModel);
+        void UpdateBrand(int id, BrandUpdateDTO brandDTO);
         void DeleteBrand(int id);
 
         // Color

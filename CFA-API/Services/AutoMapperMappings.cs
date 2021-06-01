@@ -63,10 +63,6 @@ namespace CFA_API.Mapping
             CreateMap<BrandUpdateDTO, Brand>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-            CreateMap<CategoryCreateDTO, Category>();
-            CreateMap<ProductTypeCreateDTO, ProductType>();
-            CreateMap<BrandCreateDTO, Brand>();
-
             CreateMap<SupplierUpdateDTO, Supplier>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }

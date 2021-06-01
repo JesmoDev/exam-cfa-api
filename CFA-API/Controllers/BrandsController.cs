@@ -1,4 +1,5 @@
-﻿using CFA_API.Models;
+﻿using CFA_API.Entities;
+using CFA_API.Models;
 using CFA_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBrand([FromBody] BrandCreateDTO brandDTO)
+        public IActionResult CreateBrand([FromBody] Brand brandDTO)
         {
             int id = _cfaRepository.CreateBrand(brandDTO);
             return Ok(id);

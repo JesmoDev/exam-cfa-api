@@ -1,4 +1,5 @@
-﻿using CFA_API.Models;
+﻿using CFA_API.Entities;
+using CFA_API.Models;
 using CFA_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace CFA_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCategory([FromBody] CategoryCreateDTO categoryDTO)
+        public IActionResult CreateCategory([FromBody] Category categoryDTO)
         {
             int id = _cfaRepository.CreateCategory(categoryDTO);
             return Ok(id);

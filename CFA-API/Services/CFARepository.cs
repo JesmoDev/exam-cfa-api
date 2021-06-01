@@ -103,9 +103,8 @@ namespace CFA_API.Services
 
         public Category GetCategory(int id) => _context.Categories.Find(id);
 
-        public int CreateCategory(CategoryCreateDTO categoryDTO)
+        public int CreateCategory(Category category)
         {
-            var category = _mapper.Map<Category>(categoryDTO);
             _context.Categories.Add(category);
             _context.SaveChanges();
             return category.ID;
@@ -133,9 +132,8 @@ namespace CFA_API.Services
 
         public ProductType GetProductType(int id) => _context.ProductTypes.Find(id);
 
-        public int CreateProductType(ProductTypeCreateDTO productTypeDTO)
+        public int CreateProductType(ProductType productType)
         {
-            var productType = _mapper.Map<ProductType>(productTypeDTO);
             _context.ProductTypes.Add(productType);
             _context.SaveChanges();
             return productType.ID;
@@ -163,9 +161,8 @@ namespace CFA_API.Services
 
         public Brand GetBrand(int id) => _context.Brands.Find(id);
 
-        public int CreateBrand(BrandCreateDTO brandDTO)
+        public int CreateBrand(Brand brand)
         {
-            var brand = _mapper.Map<Brand>(brandDTO);
             _context.Brands.Add(brand);
             _context.SaveChanges();
             return brand.ID;
