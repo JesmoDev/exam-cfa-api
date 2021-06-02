@@ -3,6 +3,8 @@ An Api using ASP .NET Core and Entity Framework
 
 # API-Endpoints 
 
+## Base Url: https://exam-cfa-api.herokuapp.com
+
 # Products `/products`
 
 ### Get All Products
