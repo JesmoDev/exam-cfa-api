@@ -67,6 +67,9 @@ namespace CFA_API.Mapping
 
             CreateMap<SupplierUpdateDTO, Supplier>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<ProductColor, ColorSizeResponse>();
+            CreateMap<ProductSize, ColorSizeResponse>();
         }
     }
 }

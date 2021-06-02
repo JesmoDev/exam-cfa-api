@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CFA_API.Entities
@@ -11,5 +12,7 @@ namespace CFA_API.Entities
 
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

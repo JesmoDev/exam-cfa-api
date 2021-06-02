@@ -40,20 +40,20 @@ namespace CFA_API.Services
         void DeleteBrand(int id);
 
         // Color
-        List<ProductColor> GetAllColors();
-        ProductColor GetColor(int id);
+        List<ColorSizeResponse> GetAllColors();
+        ColorSizeResponse GetColor(int id);
         int CreateColor(ProductColor color);
         void UpdateColor(int id, ProductColor color);
         void DeleteColor(int id);
 
         // Size
-        List<ProductSize> GetAllSizes();
-        ProductSize GetSize(int id);
+        List<ColorSizeResponse> GetAllSizes();
+        ColorSizeResponse GetSize(int id);
         int CreateSize(ProductSize productSize);
         void UpdateSize(int id, ProductSize productSize);
         void DeleteSize(int id);
 
-        // Size
+        // Suppliers
         List<Supplier> GetAllSuppliers();
         Supplier GetSupplier(int id, bool includeProducts = false);
         int CreateSupplier(Supplier supplier);

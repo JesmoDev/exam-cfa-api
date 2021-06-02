@@ -35,6 +35,19 @@ namespace CFA_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Colors",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colors", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductTypes",
                 columns: table => new
                 {
@@ -46,6 +59,19 @@ namespace CFA_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductTypes", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,49 +135,62 @@ namespace CFA_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Colors",
+                name: "ProductProductColor",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    ProductID = table.Column<int>(type: "INTEGER", nullable: true)
+                    ColorsID = table.Column<int>(type: "INTEGER", nullable: false),
+                    ProductsID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colors", x => x.ID);
+                    table.PrimaryKey("PK_ProductProductColor", x => new { x.ColorsID, x.ProductsID });
                     table.ForeignKey(
-                        name: "FK_Colors_Products_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_ProductProductColor_Colors_ColorsID",
+                        column: x => x.ColorsID,
+                        principalTable: "Colors",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductProductColor_Products_ProductsID",
+                        column: x => x.ProductsID,
                         principalTable: "Products",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sizes",
+                name: "ProductProductSize",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    ProductID = table.Column<int>(type: "INTEGER", nullable: true)
+                    ProductsID = table.Column<int>(type: "INTEGER", nullable: false),
+                    SizesID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sizes", x => x.ID);
+                    table.PrimaryKey("PK_ProductProductSize", x => new { x.ProductsID, x.SizesID });
                     table.ForeignKey(
-                        name: "FK_Sizes_Products_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_ProductProductSize_Products_ProductsID",
+                        column: x => x.ProductsID,
                         principalTable: "Products",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductProductSize_Sizes_SizesID",
+                        column: x => x.SizesID,
+                        principalTable: "Sizes",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Colors_ProductID",
-                table: "Colors",
-                column: "ProductID");
+                name: "IX_ProductProductColor_ProductsID",
+                table: "ProductProductColor",
+                column: "ProductsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductProductSize_SizesID",
+                table: "ProductProductSize",
+                column: "SizesID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
@@ -172,23 +211,24 @@ namespace CFA_API.Migrations
                 name: "IX_Products_SupplierId",
                 table: "Products",
                 column: "SupplierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sizes_ProductID",
-                table: "Sizes",
-                column: "ProductID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ProductProductColor");
+
+            migrationBuilder.DropTable(
+                name: "ProductProductSize");
+
+            migrationBuilder.DropTable(
                 name: "Colors");
 
             migrationBuilder.DropTable(
-                name: "Sizes");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "Brands");

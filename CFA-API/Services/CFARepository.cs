@@ -186,8 +186,8 @@ namespace CFA_API.Services
         #endregion Brand
 
         #region Color
-        public List<ProductColor> GetAllColors() => _context.Colors.ToList();
-        public ProductColor GetColor(int id) => _context.Colors.Find(id);
+        public List<ColorSizeResponse> GetAllColors() => _mapper.Map<List<ColorSizeResponse>>(_context.Colors.ToList());
+        public ColorSizeResponse GetColor(int id) => _mapper.Map<ColorSizeResponse>(_context.Colors.Find(id));
         public int CreateColor(ProductColor color)
         {
             _context.Colors.Add(color);
@@ -210,8 +210,8 @@ namespace CFA_API.Services
         #endregion Color
 
         #region Size
-        public List<ProductSize> GetAllSizes() => _context.Sizes.ToList();
-        public ProductSize GetSize(int id) => _context.Sizes.Find(id);
+        public List<ColorSizeResponse> GetAllSizes() => _mapper.Map<List<ColorSizeResponse>>(_context.Sizes.ToList());
+        public ColorSizeResponse GetSize(int id) => _mapper.Map<ColorSizeResponse>(_context.Sizes.Find(id));
         public int CreateSize(ProductSize size)
         {
             _context.Sizes.Add(size);
