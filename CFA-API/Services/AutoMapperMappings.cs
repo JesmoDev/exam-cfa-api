@@ -16,11 +16,13 @@ namespace CFA_API.Mapping
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(scr => scr.Category))
                 .ForMember(dest => dest.ProductTypeId, opt => opt.MapFrom(scr => scr.Type))
                 .ForMember(dest => dest.BrandId, opt => opt.MapFrom(scr => scr.Brand))
+                .ForMember(dest => dest.SupplierId, opt => opt.MapFrom(scr => scr.Supplier))
                 .ForMember(dest => dest.Colors, opt => opt.Ignore())
                 .ForMember(dest => dest.Sizes, opt => opt.Ignore())
                 .ForMember(dest => dest.Category, opt => opt.Ignore())
                 .ForMember(dest => dest.ProductType, opt => opt.Ignore())
-                .ForMember(dest => dest.Brand, opt => opt.Ignore());
+                .ForMember(dest => dest.Brand, opt => opt.Ignore())
+                .ForMember(dest => dest.Supplier, opt => opt.Ignore());
 
 
             CreateMap<ProductUpdateDTO, Product>()

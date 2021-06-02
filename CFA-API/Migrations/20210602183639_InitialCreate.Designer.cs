@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CFA_API.Migrations
 {
     [DbContext(typeof(CFAContext))]
-    [Migration("20210601222252_InitialCreate")]
+    [Migration("20210602183639_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -109,6 +109,7 @@ namespace CFA_API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("ProductID")
@@ -128,6 +129,7 @@ namespace CFA_API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("ProductID")

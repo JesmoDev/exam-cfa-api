@@ -114,7 +114,7 @@ namespace CFA_API.Migrations
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     ProductID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -134,7 +134,7 @@ namespace CFA_API.Migrations
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     ProductID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>

@@ -13,18 +13,20 @@ namespace CFA_API.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public double Price { get; set; }
+        public double? Price { get; set; }
         [Required]
         public int Stock { get; set; }
         [Required]
         public string[] Images { get; set; }
 
         [Required]
-        public int Category { get; set; }
+        public int? Supplier { get; set; }
         [Required]
-        public int Type { get; set; }
+        public int? Category { get; set; }
         [Required]
-        public int Brand { get; set; }
+        public int? Type { get; set; }
+        [Required]
+        public int? Brand { get; set; }
         [Required]
         public int[] Colors { get; set; }
         [Required]
