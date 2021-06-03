@@ -9,15 +9,21 @@ An Api using ASP .NET Core and Entity Framework
 
 ### Get All Products
 endpoint: GET `/products`  
+</br>
 This enpoint includes optional filter queries:  
-category, type, brand, colors, sizes.  
+category, type, brand, colors and sizes.  
 Example: `/products?category=1&type=1&brand=1&color=1&size=1`  
+</br>
 Colors and sizes are arrays and can therefor be used multiple times in the query to filter for multiple colors or sizes:  
 Example: `/products?colors=1&colors=2&sizes=1&sizes=2&sizes=3`  
 This will return all products that contains at least one of the colors and one of the sizes in the query.
 
+</br>
+
 ### Get Product
-endpoint: GET `/products/:id`
+endpoint: GET `/products/:id`   
+This endpoint has an optional `/details` to get all the information on a product: Supplier, Id on Colers, Categories and so on.
+Example: `/products/1/details`   
 
 ### Create Product
 endpoint: POST `/products`
