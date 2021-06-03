@@ -21,7 +21,8 @@ This will return all products that contains at least one of the colors and one o
 </br>
 
 ### Get Product
-endpoint: GET `/products/:id`   
+endpoint: GET `/products/:id`  
+<br/> 
 This endpoint has an optional `/details` to get all the information on a product: Supplier, Id on Colers, Categories and so on.
 Example: `/products/1/details`   
 
@@ -85,6 +86,7 @@ endpoint: GET `/suppliers`
 
 ### Get
 endpoint: GET `/suppliers/:id`  
+<br/>
 This endpoint has an optional parameter to include products in the response: `includeProducts`  
 example: 
 `/suppliers/1?includeProducts=true`
